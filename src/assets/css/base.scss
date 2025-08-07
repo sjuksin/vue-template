@@ -1,0 +1,48 @@
+:root {
+  font-family: sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+
+  -webkit-tap-highlight-color: transparent;
+  outline: none;
+}
+
+html {
+  touch-action: manipulation; /* Запрещает жесты и прокрутку */
+  overscroll-behavior: contain; /* Блокирует "отдачу" при скролле */
+}
+
+body {
+  min-height: 100vh;
+  background-color: white;
+  user-select: none;
+  font-size: 16px;
+  font-family: sans-serif;
+  color: black;
+}
+
+a {
+  all: unset;
+  cursor: pointer;
+}
+
+b {
+  font-weight: bold;
+}
+
+.pe-none {
+  pointer-events: none;
+}
