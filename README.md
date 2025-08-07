@@ -2,5 +2,5 @@
 
 Для создания проекта:
 ```bash
-
+degit sjuksin/vue-template <new-project>
 ```
