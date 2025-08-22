@@ -5,10 +5,10 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build-only": "vite build",
-    "build": "run-p type-check build-only",
-    "obfuscate": "obfuscate.sh dist dist_obf",
     "build-obf": "run-s build obfuscate",
+    "build": "run-p type-check build-only",
+    "build-only": "vite build",
+    "obfuscate": "obfuscate.sh dist dist_obf",
     "type-check": "vue-tsc -b",
     "preview": "vite preview"
   },
