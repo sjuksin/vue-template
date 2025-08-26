@@ -1,18 +1,15 @@
 import { defineStore } from 'pinia'
 import { isMobile, isTouchDevice } from '@/extra/utils'
-import type { ModalId } from '@/extra/types.ts'
 
 interface StoreState {
   isMobile: boolean
   isTouchDevice: boolean
-  visibleModal: ModalId | null // Одновременно видим только одну модалку
 }
 
 export const useUiStore = defineStore('ui', {
   state: () => ({
     isMobile: false,
     isTouchDevice: false,
-    visibleModal: null
   } as StoreState),
   actions: {
     init () {
@@ -30,12 +27,6 @@ export const useUiStore = defineStore('ui', {
       this.isMobile = isMobile()
       this.isTouchDevice = isTouchDevice()
     },
-    showModal (id: ModalId) {
-      this.visibleModal = id
-    },
-    closeCurrentModal () {
-      this.visibleModal = null
-    }
   },
   getters: {
     layoutClass (): string {

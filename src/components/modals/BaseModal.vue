@@ -1,17 +1,16 @@
-<script setup lang="ts">
+<script lang="ts" setup>
+import { useModalStore } from '@/stores/modal.ts'
 
-import { useUiStore } from '@/stores/ui.ts'
-
-const uiStore = useUiStore()
+const modalStore = useModalStore()
 
 const handleClose = () => {
-  uiStore.closeCurrentModal()
+  modalStore.close()
 }
 </script>
 
 <template>
-  <div class="modal-backdrop">
-    <div class="modal-container">
+  <div :class="modalStore.current?.class ?? ''" class="modal-backdrop">
+    <div class="modal">
       <slot/>
       <div class="btn-close" @click="handleClose">X</div>
     </div>
@@ -19,47 +18,4 @@ const handleClose = () => {
 </template>
 
 <style lang="scss" scoped>
-/* Фон затемнения */
-.modal-backdrop {
-  position: fixed;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  z-index: 1000;
-}
-
-/* Контейнер модального окна */
-.modal-container {
-  position: relative;
-  border: 2px solid black;
-  border-radius: 20px;
-  background: white;
-
-  /* Auto layout */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 70px 40px 40px;
-
-  max-height: 100vh;
-}
-
-.btn-close {
-  position: absolute;
-  top: 15px;
-  right: 15px;
-  width: 23px;
-  height: 23px;
-  background: lightgrey;
-  border-radius: 8px;
-  text-align: center;
-  cursor: pointer;
-
-  &:hover {
-    opacity: 0.7;
-  }
-}
 </style>

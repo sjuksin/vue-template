@@ -1,31 +1,24 @@
-<script setup lang="ts">
+<script lang="ts" setup>
 
 import { useUiStore } from '@/stores/ui.ts'
-import { onMounted, watch } from 'vue'
-import { useRoute } from 'vue-router'
+import { onMounted } from 'vue'
 import AppModals from '@/components/modals/AppModals.vue'
 
-const route = useRoute()
 const uiStore = useUiStore()
 
 onMounted(() => {
   uiStore.init()
 })
 
-watch(route, () => {
-  // При любых изменениях роута скрываем все диалоги
-  uiStore.closeCurrentModal()
-}, { flush: 'pre' })
-
 </script>
 
 <template>
   <div
-      class="app"
       :class="[uiStore.layoutClass]"
+      class="app"
   >
     <router-view v-slot="{ Component }">
-      <transition name="fade" mode="out-in">
+      <transition mode="out-in" name="fade">
         <component :is="Component"/>
       </transition>
     </router-view>

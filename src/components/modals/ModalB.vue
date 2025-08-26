@@ -2,7 +2,7 @@
 </script>
 
 <template>
-  Modal A
+  Modal B
 </template>
 
 <style lang="scss" scoped>

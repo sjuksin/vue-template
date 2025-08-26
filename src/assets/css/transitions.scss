@@ -19,7 +19,7 @@
   transition: opacity 400ms ease;
 
   // Костыль, для упрощения кода. Добавляем slide-эффект к контейнеру
-  .modal-container {
+  .modal {
     transition: transform 400ms ease;
   }
 }
@@ -29,7 +29,7 @@
   opacity: 0;
 
   // Костыль, для упрощения кода. Добавляем slide-эффект к контейнеру
-  .modal-container {
+  .modal {
     transform: translateY(-50px);
   }
 }

@@ -1,7 +1,7 @@
-<script setup lang="ts">
-import { useUiStore } from '@/stores/ui.ts'
+<script lang="ts" setup>
+import { useModalStore } from '@/stores/modal.ts'
 
-const uiStore = useUiStore();
+const modalStore = useModalStore()
 </script>
 
 <template>
@@ -10,7 +10,8 @@ const uiStore = useUiStore();
     <br>
     <router-link to="/second">[To Second View]</router-link>
     <br>
-    <div @click="uiStore.showModal('a')">[Show modal]</div>
+    <div @click="modalStore.open('a')">[Show modal A]</div>
+    <div @click="modalStore.open('b')">[Show modal B]</div>
   </div>
 </template>
 
