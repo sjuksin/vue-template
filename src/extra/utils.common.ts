@@ -1,19 +1,12 @@
-/****************************************** For this Project *******************************************/
+/**
+ * Здесь находятся "общие", кросс-проектные функции
+ */
 
-export function ymGoal (param: string) {
-  if (location.hostname === 'localhost') {
-    // console.log('ymGoal', param)
-  } else {
-    // @ts-ignore
-    ym(777777777, 'reachGoal', param)
-  }
-}
-
-/****************************************** Common *******************************************/
 
 export function validateEmail (value: string) {
-  const validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
-  return value.match(validRegex)
+  const validRegex =
+    /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
+  return validRegex.test(value)
 }
 
 export function isMobile (): boolean {
@@ -31,7 +24,7 @@ export function isTouchDevice (): boolean {
 }
 
 /**
- *
+ * Множественное числов существительного
  * @param n
  * @param forms - [яблоко, яблока, яблок]
  */
@@ -74,4 +67,20 @@ function fallbackCopy (text: string): void {
 export function assertNever (data: never): never {
   console.error('assertNever', data)
   throw new Error('This should never happen.')
+}
+
+export function generateId (length: number, numbersOnly: boolean): string {
+  const firstChars = numbersOnly
+    ? '123456789'
+    : 'abcdefghijklmnopqrstuvwxyz'
+  const otherChars = numbersOnly
+    ? '0123456789'
+    : 'abcdefghijklmnopqrstuvwxyz0123456789'
+
+  let id = firstChars[Math.floor(Math.random() * firstChars.length)]
+  for (let i = 1; i < length; i++) {
+    id += otherChars[Math.floor(Math.random() * otherChars.length)]
+  }
+
+  return id
 }
