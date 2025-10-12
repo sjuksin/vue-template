@@ -17,7 +17,10 @@ interface StoreState {
 }
 
 export const useModalStore = defineStore('modal', {
-  state: () => ({} as StoreState),
+  state: (): StoreState => ({
+    current: null,
+    queue: [],
+  }),
 
   actions: {
     open (id: ModalId, params: ModalParams = {}): void {

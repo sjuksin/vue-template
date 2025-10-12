@@ -7,10 +7,10 @@ interface StoreState {
 }
 
 export const useUiStore = defineStore('ui', {
-  state: () => ({
+  state: (): StoreState => ({
     isMobile: false,
     isTouchDevice: false,
-  } as StoreState),
+  }),
   actions: {
     init () {
       this.setDeviceParams()

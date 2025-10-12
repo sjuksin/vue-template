@@ -5,8 +5,14 @@ interface StoreState {
 }
 
 export const useXxxStore = defineStore('xxx', {
-  state: () => ({} as StoreState),
+  state: (): StoreState => ({
 
-  actions: {},
-  getters: {}
+  }),
+
+  actions: {
+
+  },
+  getters: {
+
+  }
 })
