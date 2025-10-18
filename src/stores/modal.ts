@@ -56,5 +56,6 @@ export const useModalStore = defineStore('modal', {
       this.queue = []
     }
   },
+
   getters: {}
 })
