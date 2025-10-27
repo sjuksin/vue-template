@@ -6,6 +6,8 @@
       "@/*": ["./src/*"]
     },
 
+    "lib": ["ES2024", "DOM"],
+
     /* Linting */
     "strict": true,
     "noUnusedParameters": true,
