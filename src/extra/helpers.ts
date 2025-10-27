@@ -1,8 +1,9 @@
+/***** Хелперы, вспомогательные функции для данного проекта *****/
+
 /**
- * Здесь находятся специфичные для проекта функции
+ * Цель для Яндекс Метрики
+ * @param param
  */
-
-
 export function ymGoal (param: string) {
   if (location.hostname === 'localhost') {
     // console.log('ymGoal', param)

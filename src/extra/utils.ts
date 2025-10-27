@@ -1,8 +1,9 @@
+/***** Общие, кросс-проектные вспомогательные функции *****/
+
 /**
- * Здесь находятся "общие", кросс-проектные функции
+ * Проверка валидности email`а
+ * @param value
  */
-
-
 export function validateEmail (value: string) {
   const validRegex =
     /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/
@@ -48,14 +49,14 @@ export function copyToClipboard (text: string): void {
   if (navigator.clipboard) {
     navigator.clipboard.writeText(text).catch((err) => {
       console.error('Clipboard write failed:', err)
-      fallbackCopy(text)
+      fallbackCopyToClipboard(text)
     })
   } else {
-    fallbackCopy(text)
+    fallbackCopyToClipboard(text)
   }
 }
 
-function fallbackCopy (text: string): void {
+function fallbackCopyToClipboard (text: string): void {
   const input = document.createElement('input')
   input.value = text
   document.body.appendChild(input)
