@@ -1,5 +1,5 @@
 import './assets/main.scss'
-import '@/setup/globals'
+import '@/helpers/setup-globals.ts'
 import { createApp } from 'vue'
 import App from './App.vue'
 import { createPinia } from 'pinia'

@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { isMobile, isTouchDevice } from '@/extra/utils.ts'
+import { isMobile, isTouchDevice } from '@/helpers/utils.ts'
 
 interface StoreState {
   isMobile: boolean
