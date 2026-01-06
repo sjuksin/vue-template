@@ -85,3 +85,32 @@ export function generateId (length: number, numbersOnly: boolean): string {
 
   return id
 }
+
+export function timeout (ms: number): Promise<void> {
+  return new Promise(resolve => setTimeout(resolve, ms))
+}
+
+/**
+ * Export content as a file (UTF-8 with BOM)
+ * Example: exportInFile('offers.csv', 'text/csv', csvContent)
+ */
+export function exportInFile(filename: string, type: string, content: string): void {
+  const blob = new Blob(
+    [`\uFEFF${content}`],
+    { type: `${type};charset=utf-8` }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+
+  try {
+    link.href = url;
+    link.download = filename;
+    link.style.display = 'none';
+    document.body.appendChild(link);
+    link.click();
+  } finally {
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+}
