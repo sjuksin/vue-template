@@ -1,0 +1,96 @@
+/* =========================
+   Tailwind-like helpers
+   - Spacing (padding / margin)
+   - Display
+   - Flex utilities
+   ========================= */
+
+/* @formatter:off */
+
+/* ---------- 1. Spacing scale (Tailwind default) ---------- */
+
+$spacing: (
+        0:    0rem,
+        1:    0.25rem,      // 4px
+        2:    0.5rem,       // 8px
+        3:    0.75rem,      // 12px
+        4:    1rem,         // 16px
+        5:    1.25rem,      // 20px
+        6:    1.5rem,       // 24px
+        7:    1.75rem,      // 28px
+        8:    2rem,         // 32px
+        9:    2.25rem,      // 36px
+        10:   2.5rem,       // 40px
+        11:   2.75rem,      // 44px
+        12:   3rem,         // 48px
+);
+
+/* ---------- 2. Padding / Margin / Gap---------- */
+
+@each $k, $v in $spacing {
+  /* Padding */
+  .p-#{$k}  { padding: $v; }
+  .px-#{$k} { padding-left: $v; padding-right: $v; }
+  .py-#{$k} { padding-top: $v; padding-bottom: $v; }
+  .pt-#{$k} { padding-top: $v; }
+  .pr-#{$k} { padding-right: $v; }
+  .pb-#{$k} { padding-bottom: $v; }
+  .pl-#{$k} { padding-left: $v; }
+
+  /* Margin */
+  .m-#{$k}  { margin: $v; }
+  .mx-#{$k} { margin-left: $v; margin-right: $v; }
+  .my-#{$k} { margin-top: $v; margin-bottom: $v; }
+  .mt-#{$k} { margin-top: $v; }
+  .mr-#{$k} { margin-right: $v; }
+  .mb-#{$k} { margin-bottom: $v; }
+  .ml-#{$k} { margin-left: $v; }
+
+  .gap-#{$k} { gap: $v; }
+}
+
+/* ---------- 3. Display ---------- */
+
+.block { display: block; }
+.inline-block { display: inline-block; }
+.inline { display: inline; }
+.flex { display: flex; }
+.inline-flex { display: inline-flex; }
+.grid { display: grid; }
+.hidden { display: none; }
+
+/* ---------- 4. Flex utilities ---------- */
+
+/* Direction */
+.flex-row { flex-direction: row; }
+.flex-col { flex-direction: column; }
+
+/* Wrap */
+.flex-wrap { flex-wrap: wrap; }
+.flex-nowrap { flex-wrap: nowrap; }
+
+/* Align items */
+.items-start { align-items: flex-start; }
+.items-center { align-items: center; }
+.items-end { align-items: flex-end; }
+.items-stretch { align-items: stretch; }
+
+/* Justify content */
+.justify-start { justify-content: flex-start; }
+.justify-center { justify-content: center; }
+.justify-end { justify-content: flex-end; }
+.justify-between { justify-content: space-between; }
+.justify-around { justify-content: space-around; }
+.justify-evenly { justify-content: space-evenly; }
+
+/* ------------- 5. Text-align ---------------- */
+
+.text-left { text-align: left; }
+.text-center { text-align: center; }
+.text-right { text-align: right; }
+.text-justify { text-align: justify; }
+
+/* --------------- ПРОЧЕЕ ----------------- */
+
+b { font-weight: bold; }
+.pe-none { pointer-events: none; }
