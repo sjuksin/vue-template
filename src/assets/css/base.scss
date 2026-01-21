@@ -1,43 +1,37 @@
-:root {
-  font-family: sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%; // Может уменьшить проблемы с масштабом шрифта в Телеграмме
-}
-
 *,
 *::before,
 *::after {
   box-sizing: border-box;
-  margin: 0;
-  font-weight: normal;
-
   -webkit-tap-highlight-color: transparent;
-  outline: none;
 }
 
 html {
-  touch-action: manipulation; /* Запрещает жесты и прокрутку */
+  /* ----- Опционально: ----- */
+  //user-select: none; /* Нужно для игр. Чтобы запретить выделение */
+  //outline: none; /* Нужно для игр (outline нужен для переключения инпутов клавиатурой */
+  touch-action: manipulation; /* отключает double-tap zoom */
   overscroll-behavior: contain; /* Блокирует "отдачу" при скролле */
 }
 
 body {
+  margin: 0;
+  font-family: sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  font-size: 14px;
+
+  font-synthesis: none; // запрещает браузеру "синтезировать" жирный/курсив, если они недоступны в шрифте
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%; // Может уменьшить проблемы с масштабом шрифта в Телеграмме
+
   min-height: 100vh;
   background-color: white;
-  user-select: none;
-  font-size: 16px;
-  font-family: sans-serif;
   color: black;
 }
 
-a {
-  all: unset;
-  cursor: pointer;
+input, button, textarea, select, option, optgroup {
+  font: inherit;
 }
-
 
