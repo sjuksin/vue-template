@@ -7,7 +7,7 @@ export interface ModalParams {
   handleClose?: () => void
 }
 
-export interface Modal extends ModalParams {
+interface Modal extends ModalParams {
   id: ModalId
 }
 
