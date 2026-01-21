@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { useModalStore } from '@/stores/modal.ts'
+import { useModalStore } from '@/stores/modal'
 
 const modalStore = useModalStore()
 
