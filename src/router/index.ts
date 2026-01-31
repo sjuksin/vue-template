@@ -24,7 +24,7 @@ const router = createRouter({
 })
 
 router.beforeEach(async (to) => {
-  // debug-routes always in access
+  // dev-routes always in access
   if (to.path.indexOf('/_') === 0) {
     return
   }
