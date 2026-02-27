@@ -94,23 +94,51 @@ export function timeout (ms: number): Promise<void> {
  * Export content as a file (UTF-8 with BOM)
  * Example: exportInFile('offers.csv', 'text/csv', csvContent)
  */
-export function exportInFile(filename: string, type: string, content: string): void {
+export function exportInFile (filename: string, type: string, content: string): void {
   const blob = new Blob(
     [`\uFEFF${content}`],
     { type: `${type};charset=utf-8` }
-  );
+  )
 
-  const url = URL.createObjectURL(blob);
-  const link = document.createElement('a');
+  const url = URL.createObjectURL(blob)
+  const link = document.createElement('a')
 
   try {
-    link.href = url;
-    link.download = filename;
-    link.style.display = 'none';
-    document.body.appendChild(link);
-    link.click();
+    link.href = url
+    link.download = filename
+    link.style.display = 'none'
+    document.body.appendChild(link)
+    link.click()
   } finally {
-    document.body.removeChild(link);
-    URL.revokeObjectURL(url);
+    document.body.removeChild(link)
+    URL.revokeObjectURL(url)
+  }
+}
+
+/**
+ * Вход в полноэкранный режим
+ */
+export function requestFullScreen (): void {
+  const el = document.documentElement // обычно fullscreen делается на html
+
+  if (el.requestFullscreen) {
+    void el.requestFullscreen()
+  } else if ((el as any).webkitRequestFullscreen) { // Safari
+    (el as any).webkitRequestFullscreen()
+  } else if ((el as any).msRequestFullscreen) { // IE/Edge
+    (el as any).msRequestFullscreen()
+  }
+}
+
+/**
+ * Выход из полноэкранного режима
+ */
+export function cancelFullScreen (): void {
+  if (document.exitFullscreen) {
+    void document.exitFullscreen()
+  } else if ((document as any).webkitExitFullscreen) { // Safari
+    (document as any).webkitExitFullscreen()
+  } else if ((document as any).msExitFullscreen) { // IE/Edge
+    (document as any).msExitFullscreen()
   }
 }
