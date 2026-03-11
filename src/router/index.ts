@@ -1,6 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import StartView from '../views/StartView.vue'
-import SecondView from '@/views/SecondView.vue'
 import { useModalStore } from '@/stores/modal'
 
 const router = createRouter({
@@ -10,11 +9,6 @@ const router = createRouter({
       path: '/',
       name: 'start',
       component: StartView,
-    },
-    {
-      path: '/second',
-      name: 'second',
-      component: SecondView,
     },
     {
       path: '/:pathMatch(.*)*',
