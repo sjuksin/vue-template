@@ -92,5 +92,6 @@ $spacing: (
 
 /* --------------- ПРОЧЕЕ ----------------- */
 
-b { font-weight: bold; }
+b, .bold { font-weight: bold; }
 .pe-none { pointer-events: none; }
+.spacer { height: 10px; }
