@@ -2,14 +2,12 @@
 import BaseModal from '@/components/modals/BaseModal.vue'
 import { type Component } from 'vue'
 import ModalA from '@/components/modals/ModalA.vue'
-import ModalB from '@/components/modals/ModalB.vue'
 import { type ModalId, useModalStore } from '@/stores/modal'
 
 const modalStore = useModalStore()
 
 const modalComponents: { [key in ModalId]: Component } = {
-  'a': ModalA,
-  'b': ModalB
+  'a': ModalA
 }
 
 </script>

@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 
-export type ModalId = 'a' | 'b'
+export type ModalId = 'a'
 
 export interface ModalParams {
   class?: string
