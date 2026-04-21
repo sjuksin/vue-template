@@ -9,6 +9,7 @@ export const useXxxStore = defineStore('xxx', {
 
   }),
 
+  getters: {},
+
   actions: {},
-  getters: {}
 })

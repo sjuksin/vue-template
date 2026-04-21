@@ -21,6 +21,7 @@ export const useModalStore = defineStore('modal', {
     current: null,
     queue: [],
   }),
+  getters: {},
 
   actions: {
     open (id: ModalId, params: ModalParams = {}): void {
@@ -56,6 +57,4 @@ export const useModalStore = defineStore('modal', {
       this.queue = []
     }
   },
-
-  getters: {}
 })

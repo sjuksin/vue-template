@@ -12,6 +12,16 @@ export const useUiStore = defineStore('ui', {
     isTouchDevice: false,
   }),
 
+  getters: {
+    layoutClass (): string {
+      return (this.isMobile ? 'mobile ' : 'desktop ') +
+        (this.isTouchDevice ? 'touch ' : 'no-touch ')
+    },
+    isDesktop (): boolean {
+      return !this.isMobile
+    },
+  },
+
   actions: {
     init () {
       this.setDeviceParams()
@@ -29,14 +39,4 @@ export const useUiStore = defineStore('ui', {
       this.isTouchDevice = isTouchDevice()
     },
   },
-
-  getters: {
-    layoutClass (): string {
-      return (this.isMobile ? 'mobile ' : 'desktop ') +
-        (this.isTouchDevice ? 'touch ' : 'no-touch ')
-    },
-    isDesktop (): boolean {
-      return !this.isMobile
-    },
-  }
 })
