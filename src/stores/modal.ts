@@ -42,19 +42,12 @@ export const useModalStore = defineStore('modal', {
         this.current.handleClose()
       }
 
-      if (this.queue.length > 0) {
-        this.current = this.queue.shift()! // показываем следующее
+      const next = this.queue.shift()
+      if (next) {
+        this.current = next
       } else {
         this.current = null
       }
-    },
-
-    /**
-     * Сброс состояния (например, при навигации)
-     */
-    reset () {
-      this.current = null
-      this.queue = []
     }
   },
 })

@@ -27,7 +27,7 @@ router.beforeEach(async (to) => {
 // При любом переходе сбрасываем модалки
 router.afterEach(() => {
   const modalStore = useModalStore()
-  modalStore.reset()
+  modalStore.$reset()
 })
 
 export default router
