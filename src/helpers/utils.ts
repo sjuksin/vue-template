@@ -1,3 +1,5 @@
+import { cloneDeep } from 'lodash-es'
+
 /***** Общие, кросс-проектные вспомогательные функции *****/
 
 /**
@@ -141,4 +143,9 @@ export function cancelFullScreen (): void {
   } else if ((document as any).msExitFullscreen) { // IE/Edge
     (document as any).msExitFullscreen()
   }
+}
+
+
+export const deepClone = <T>(value: T): T => {
+  return (globalThis.structuredClone ?? cloneDeep)(value)
 }
