@@ -4,7 +4,7 @@ import { defineStore } from 'pinia'
 
 interface BaseModalParams {
   className?: string
-  handleClose?: () => void
+  onClose?: () => void
 }
 
 /**
@@ -37,7 +37,7 @@ export const useModalStore = defineStore('modal', {
   actions: {
     /**
      * Использование
-     *  open({ type: 'a', handleClose })
+     *  open({ type: 'a', onClose })
      *  open({ type: 'second', payload })
      */
     open (modal: Modal): void {
@@ -53,7 +53,7 @@ export const useModalStore = defineStore('modal', {
      * Если есть ещё модалки в очереди - открываем
      */
     close () {
-      this.current?.handleClose?.()
+      this.current?.onClose?.()
 
       const next = this.queue.shift()
       if (next) {
