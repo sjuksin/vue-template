@@ -9,7 +9,10 @@ const handleClose = () => {
 </script>
 
 <template>
-  <div :class="modalStore.current?.class ?? ''" class="modal-backdrop">
+  <div
+      class="modal-backdrop"
+      :class="modalStore.current?.className ?? ''"
+  >
     <div class="modal-container">
       <slot/>
       <div class="btn-close" @click="handleClose">X</div>

@@ -15,7 +15,7 @@ const modalStore = useModalStore()
   <div>
     StartView
     <br>
-    <div @click="modalStore.open('a')">[Show modal A]</div>
+    <div @click="modalStore.open({ type: 'example' })">[Show modal Example]</div>
   </div>
 </template>
 

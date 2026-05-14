@@ -1,21 +1,22 @@
 <script lang="ts" setup>
 import BaseModal from '@/components/modals/BaseModal.vue'
 import { type Component } from 'vue'
-import ModalA from '@/components/modals/ModalA.vue'
-import { type ModalId, useModalStore } from '@/stores/modal'
+import ModalExample from '@/components/modals/ModalExample.vue'
+import { type ModalType, useModalStore } from '@/stores/modal'
 
 const modalStore = useModalStore()
 
-const modalComponents: { [key in ModalId]: Component } = {
-  'a': ModalA
+const modalComponents: { [key in ModalType]: Component } = {
+  'example': ModalExample,
+  'example2': ModalExample,
 }
 
 </script>
 
 <template>
   <transition mode="out-in" name="modal">
-    <BaseModal v-if="modalStore.current" :key="modalStore.current.id">
-      <component :is="modalComponents[modalStore.current.id]"/>
+    <BaseModal v-if="modalStore.current" :key="modalStore.current.type">
+      <component :is="modalComponents[modalStore.current.type]"/>
     </BaseModal>
   </transition>
 </template>

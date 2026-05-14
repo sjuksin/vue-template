@@ -8,7 +8,7 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  Modal A
+  Modal Example
 </template>
 
 <style lang="scss" scoped>

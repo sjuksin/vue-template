@@ -1,15 +1,27 @@
 import { defineStore } from 'pinia'
 
-export type ModalId = 'a'
+// --------- Modal Types -----------
 
-export interface ModalParams {
-  class?: string
+interface BaseModalParams {
+  className?: string
   handleClose?: () => void
 }
 
-interface Modal extends ModalParams {
-  id: ModalId
+/**
+ * Usage:
+ *  modalStore.payloadAs<Example2Payload>()
+ */
+export interface Example2Payload {
+  count: number
 }
+
+export type Modal =
+  | BaseModalParams & { type: 'example' }
+  | BaseModalParams & { type: 'example2', payload: Example2Payload }
+
+export type ModalType = Modal['type']
+
+// --------- Store -----------
 
 interface StoreState {
   current: Modal | null
@@ -21,11 +33,14 @@ export const useModalStore = defineStore('modal', {
     current: null,
     queue: [],
   }),
-  getters: {},
 
   actions: {
-    open (id: ModalId, params: ModalParams = {}): void {
-      const modal: Modal = { id, ...params }
+    /**
+     * Использование
+     *  open({ type: 'a', handleClose })
+     *  open({ type: 'second', payload })
+     */
+    open (modal: Modal): void {
       if (!this.current) {
         this.current = modal
       } else {
@@ -38,9 +53,7 @@ export const useModalStore = defineStore('modal', {
      * Если есть ещё модалки в очереди - открываем
      */
     close () {
-      if (this?.current?.handleClose) {
-        this.current.handleClose()
-      }
+      this.current?.handleClose?.()
 
       const next = this.queue.shift()
       if (next) {
@@ -48,6 +61,10 @@ export const useModalStore = defineStore('modal', {
       } else {
         this.current = null
       }
+    },
+
+    payloadAs<T> (): T {
+      return (this.current as { payload: T }).payload
     }
   },
 })
