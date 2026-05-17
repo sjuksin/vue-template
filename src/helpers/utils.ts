@@ -147,5 +147,11 @@ export function cancelFullScreen (): void {
 
 
 export const deepClone = <T>(value: T): T => {
-  return (globalThis.structuredClone ?? cloneDeep)(value)
+  // structuredClone быстрее, но строгий: иногда падает на Vue reactive proxy и нестандартных объектах.
+  // На ошибке откатываемся на lodash cloneDeep (медленнее, но всеяден).
+  try {
+    return structuredClone(value)
+  } catch {
+    return cloneDeep(value)
+  }
 }
