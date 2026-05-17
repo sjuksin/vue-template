@@ -47,26 +47,6 @@ export function pluralForm (n: number, forms: [string, string, string]): string 
   return forms[2] // например, "яблок"
 }
 
-export function copyToClipboard (text: string): void {
-  if (navigator.clipboard) {
-    navigator.clipboard.writeText(text).catch((err) => {
-      console.error('Clipboard write failed:', err)
-      fallbackCopyToClipboard(text)
-    })
-  } else {
-    fallbackCopyToClipboard(text)
-  }
-}
-
-function fallbackCopyToClipboard (text: string): void {
-  const input = document.createElement('input')
-  input.value = text
-  document.body.appendChild(input)
-  input.select()
-  document.execCommand('copy')
-  document.body.removeChild(input)
-}
-
 export function assertNever (data: never): never {
   console.error('assertNever', data)
   throw new Error('This should never happen.')
@@ -116,35 +96,6 @@ export function exportInFile (filename: string, type: string, content: string): 
     URL.revokeObjectURL(url)
   }
 }
-
-/**
- * Вход в полноэкранный режим
- */
-export function requestFullScreen (): void {
-  const el = document.documentElement // обычно fullscreen делается на html
-
-  if (el.requestFullscreen) {
-    void el.requestFullscreen()
-  } else if ((el as any).webkitRequestFullscreen) { // Safari
-    (el as any).webkitRequestFullscreen()
-  } else if ((el as any).msRequestFullscreen) { // IE/Edge
-    (el as any).msRequestFullscreen()
-  }
-}
-
-/**
- * Выход из полноэкранного режима
- */
-export function cancelFullScreen (): void {
-  if (document.exitFullscreen) {
-    void document.exitFullscreen()
-  } else if ((document as any).webkitExitFullscreen) { // Safari
-    (document as any).webkitExitFullscreen()
-  } else if ((document as any).msExitFullscreen) { // IE/Edge
-    (document as any).msExitFullscreen()
-  }
-}
-
 
 export const deepClone = <T>(value: T): T => {
   // structuredClone быстрее, но строгий: иногда падает на Vue reactive proxy и нестандартных объектах.
