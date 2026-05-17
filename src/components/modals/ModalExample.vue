@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from 'vue'
+import ModalContainer from '@/components/modals/_base/ModalContainer.vue'
 // --------------- State -----------------------
 // --------------- Computed --------------------
 // --------------- Handlers --------------------
@@ -8,7 +8,9 @@ import { ref } from 'vue'
 </script>
 
 <template>
-  Modal Example
+  <ModalContainer width="380px">
+    Modal Example
+  </ModalContainer>
 </template>
 
 <style lang="scss" scoped>

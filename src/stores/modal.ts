@@ -3,23 +3,31 @@ import { defineStore } from 'pinia'
 // --------- Modal Types -----------
 
 interface BaseModalParams {
-  className?: string
   onClose?: () => void
 }
 
-/**
- * Usage:
- *  modalStore.payloadAs<Example2Payload>()
- */
-export interface Example2Payload {
+interface Example2Payload {
   count: number
 }
 
-export type Modal =
-  | BaseModalParams & { type: 'example' }
-  | BaseModalParams & { type: 'example2', payload: Example2Payload }
+/**
+ * Карта соответствия type ↔ payload.
+ * `void` означает, что у модалки нет payload.
+ */
+interface ModalPayloads {
+  example: void
+  example2: Example2Payload
+}
 
-export type ModalType = Modal['type']
+export type ModalType = keyof ModalPayloads
+
+export type Modal = {
+  [K in ModalType]: {
+    type: K
+    payload: ModalPayloads[K] extends void ? undefined : ModalPayloads[K]
+    params?: BaseModalParams
+  }
+}[ModalType]
 
 // --------- Store -----------
 
@@ -36,11 +44,19 @@ export const useModalStore = defineStore('modal', {
 
   actions: {
     /**
-     * Использование
-     *  open({ type: 'a', onClose })
-     *  open({ type: 'second', payload })
+     * Использование:
+     *  open('type')
+     *  open('type', payload)
+     *  open('type', payload, { onClose })
+     *  open('type', {}, { onClose })       // для void-типов: пустой payload
      */
-    open (modal: Modal): void {
+    open<K extends ModalType> (
+      type: K,
+      payload?: ModalPayloads[K] extends void ? object : ModalPayloads[K],
+      params?: BaseModalParams,
+    ): void {
+      const modal = { type, payload, params } as Modal
+
       if (!this.current) {
         this.current = modal
       } else {
@@ -53,7 +69,7 @@ export const useModalStore = defineStore('modal', {
      * Если есть ещё модалки в очереди - открываем
      */
     close () {
-      this.current?.onClose?.()
+      this.current?.params?.onClose?.()
 
       const next = this.queue.shift()
       if (next) {
@@ -63,8 +79,14 @@ export const useModalStore = defineStore('modal', {
       }
     },
 
-    payloadAs<T> (): T {
-      return (this.current as { payload: T }).payload
-    }
+    /**
+     * Достаём payload текущей модалки, проверяя что её type совпадает с ожидаемым.
+     */
+    payloadAs<K extends ModalType> (type: K): ModalPayloads[K] {
+      if (this.current?.type !== type) {
+        throw new Error(`Modal payloadAs: expected "${type}", got "${this.current?.type}"`)
+      }
+      return this.current.payload as unknown as ModalPayloads[K]
+    },
   },
 })
