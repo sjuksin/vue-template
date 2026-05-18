@@ -1,4 +1,5 @@
 import { cloneDeep } from 'lodash-es'
+import { toRaw } from 'vue'
 
 /***** Общие, кросс-проектные вспомогательные функции *****/
 
@@ -97,12 +98,16 @@ export function exportInFile (filename: string, type: string, content: string): 
   }
 }
 
-export const deepClone = <T>(value: T): T => {
+export const deepClone = <T> (value: T): T => {
   // structuredClone быстрее, но строгий: иногда падает на Vue reactive proxy и нестандартных объектах.
+  // Также не доступен в очень старых браузерах
   // На ошибке откатываемся на lodash cloneDeep (медленнее, но всеяден).
+
+  const raw = toRaw(value) // На всякий случай чистим реактивность - это упростит сериализацию для structuredClone
   try {
-    return structuredClone(value)
+    return structuredClone(raw)
   } catch {
     return cloneDeep(value)
   }
 }
+
