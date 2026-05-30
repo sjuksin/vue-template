@@ -12,10 +12,5 @@ export const useMainStore = defineStore('main', {
 
   getters: {},
 
-  actions: {
-    reset () {
-      this.$reset()
-      localStorage.removeItem(this.$id)
-    },
-  },
+  actions: {},
 })
