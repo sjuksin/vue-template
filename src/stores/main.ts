@@ -4,9 +4,7 @@ interface StoreState {
 }
 
 export const useMainStore = defineStore('main', {
-  persistedState: {
-    persist: true,
-  },
+  persist: true,
   state: (): StoreState => ({
   }),
 
