@@ -7,9 +7,22 @@
     <title></title>
 
     <script type="text/javascript">console.log('%c🚀 Created by Dmitry Sjuksin | sjuksin@gmail.com | t.me/sjuksin', 'color: #42b883; font-weight: bold;')</script>
+
+    <style lang="text/css">
+        .load-bar {
+            position: absolute;
+            height: 10px;
+            bottom: 0;
+            left: 0;
+            background: deepskyblue;
+            transition: width 0.1s ease;
+        }
+    </style>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <div class="load-bar" id="load-bar"></div>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
