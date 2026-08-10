@@ -1,4 +1,4 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
 import StartView from '../views/StartView.vue'
 import { useModalStore } from '@/stores/modal'
 
@@ -17,9 +17,14 @@ const router = createRouter({
   ],
 })
 
-router.beforeEach(async (to) => {
+// Отправляем на роут, если и так на него не идём
+function ensureOnRoute (to: RouteLocationNormalized, name: string, params?: Record<string, any>) {
+  return to.name === name ? true : { name, params }
+}
+
+router.beforeEach(to => {
   // dev-routes always in access
-  if (to.path.indexOf('/_') === 0) {
+  if (to.path.startsWith('/_')) {
     return
   }
 })
