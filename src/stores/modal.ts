@@ -23,6 +23,7 @@ export type ModalType = keyof ModalPayloads
 
 export type Modal = {
   [K in ModalType]: {
+    id: number
     type: K
     payload: ModalPayloads[K] extends void ? undefined : ModalPayloads[K]
     params?: BaseModalParams
@@ -30,6 +31,9 @@ export type Modal = {
 }[ModalType]
 
 // --------- Store -----------
+
+/** Счётчик живёт вне state: `$reset` при переходе роутера не должен его обнулять */
+let lastModalId = 0
 
 interface StoreState {
   current: Modal | null
@@ -55,7 +59,7 @@ export const useModalStore = defineStore('modal', {
       payload?: ModalPayloads[K] extends void ? object : ModalPayloads[K],
       params?: BaseModalParams,
     ): void {
-      const modal = { type, payload, params } as Modal
+      const modal = { id: ++lastModalId, type, payload, params } as Modal
 
       if (!this.current) {
         this.current = modal

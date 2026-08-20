@@ -16,6 +16,7 @@ const modalComponents: { [key in ModalType]: Component } = {
     <component
         v-if="modalStore.current"
         :is="modalComponents[modalStore.current.type]"
+        :key="modalStore.current.id"
     />
   </transition>
 </template>
