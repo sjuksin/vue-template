@@ -17,16 +17,15 @@ const router = createRouter({
   ],
 })
 
-// Отправляем на роут, если и так на него не идём
+/** Отправляем на роут, если и так на него не идём */
 function ensureOnRoute (to: RouteLocationNormalized, name: string, params?: Record<string, any>) {
   return to.name === name ? true : { name, params }
 }
 
 router.beforeEach(to => {
   // dev-routes always in access
-  if (to.path.startsWith('/_')) {
-    return
-  }
+  if (to.path.startsWith('/_')) return
+
 })
 
 // При любом переходе сбрасываем модалки

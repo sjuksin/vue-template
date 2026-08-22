@@ -6,14 +6,20 @@
 }
 
 html {
-  /* ----- Опционально: ----- */
-  //user-select: none; /* Нужно для игр. Чтобы запретить выделение */
-  //outline: none; /* Нужно для игр (outline нужен для переключения инпутов клавиатурой */
   touch-action: manipulation; /* отключает double-tap zoom */
   overscroll-behavior: contain; /* Блокирует "отдачу" при скролле */
 }
 
+/* Даём себе возможность верстать с помощью img-блоков */
+img {
+  display: block;
+  -webkit-user-drag: none; // Запрещаем их перетаскивание, чтобы не было визуальных артефактов
+}
+
 body {
+  -webkit-touch-callout: none; /* Нужно для игр. Отключает контекстное меню */
+  user-select: none; /* Нужно для игр. Чтобы запретить выделение */
+
   margin: 0;
   font-family: sans-serif;
   line-height: 1.5;

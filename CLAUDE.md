@@ -15,6 +15,11 @@ COMMON (ALL PROJECTS)
 - JavaScript Standard Style for JS/TS/Vue — **single quotes**, no semicolons. Example: `import x from 'foo'`, not `"foo"`.
 - Quotes: double in SCSS/HTML attributes
 - Max line length is 120 characters. Don't wrap lines shorter than that
+- JSDoc is for **doc comments attached to a declaration** — function, class, interface, type, enum, property, or module-level const. There a multi-line comment is always JSDoc (`/** ... */`), never stacked `//` lines.
+  - Collapse a JSDoc to a single line when its content is exactly one line; keep the block form (`/**` / ` * ...` / ` */`) only when it spans multiple lines.
+  - A one-line doc on a declaration is still a JSDoc, not a `//` note.
+  - Comments **inside a function body** — explaining a statement, a branch, a loop, a local `const` — are inline notes, not docs. `//` is correct there no matter how many lines they run; don't convert them to JSDoc.
+- Blank line above a JSDoc block, unless it's the first thing in its enclosing object literal, interface, type literal, class, enum, or function body.
 
 ## Development rules
 - Never touch TODO/FIXME comments when refactoring or transforming code, unless explicitly asked to. If a TODO/FIXME has genuinely become obsolete after the change, ask whether to remove it

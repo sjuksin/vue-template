@@ -83,9 +83,7 @@ export const useModalStore = defineStore('modal', {
       }
     },
 
-    /**
-     * Достаём payload текущей модалки, проверяя что её type совпадает с ожидаемым.
-     */
+    /** Достаём payload текущей модалки, проверяя что её type совпадает с ожидаемым. */
     payloadAs<K extends ModalType> (type: K): ModalPayloads[K] {
       if (this.current?.type !== type) {
         throw new Error(`Modal payloadAs: expected "${type}", got "${this.current?.type}"`)

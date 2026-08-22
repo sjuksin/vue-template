@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import { useUiStore } from '@/stores/ui'
-import { onMounted } from 'vue'
 import AppModals from '@/components/modals/_base/AppModals.vue'
 
 // --------------- State -----------------------
@@ -11,11 +10,6 @@ const uiStore = useUiStore()
 // --------------- Handlers --------------------
 // --------------- Watchers --------------------
 // --------------- Lifecycle -------------------
-
-onMounted(() => {
-  uiStore.init()
-})
-
 </script>
 
 <template>
