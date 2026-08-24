@@ -27,3 +27,8 @@ dist-ssr
 # AI
 .aider*
 .claude
+
+# Рабочие записи, референсы
+_NOTES
+_REFS
+_REF
