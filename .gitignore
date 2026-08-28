@@ -28,8 +28,9 @@ dist-ssr
 .aider*
 .claude
 
-# Рабочие записи, референсы
+# Рабочие записи и вспомогательные (для работы с агентом) папки
 _NOTES
+_REPORTS
+_DATA
 _REFS
-_REF
 _sreenshots
