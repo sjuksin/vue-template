@@ -8,7 +8,7 @@
     "build-obf": "run-s build obfuscate",
     "build": "run-p type-check build-only",
     "build-only": "vite build",
-    "obfuscate": "obfuscate.sh dist dist_obf",
+    "obfuscate": "node scripts/obfuscate.js",
     "type-check": "vue-tsc -b",
     "preview": "vite preview"
   },
