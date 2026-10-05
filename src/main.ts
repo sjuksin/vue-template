@@ -7,6 +7,7 @@ import router from './router'
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 import { createLoader } from '@/helpers/loader'
 import { preloadImages } from '@/helpers/preloadImages'
+import { waitSoundsLoaded } from '@/audio/core'
 import { useUiStore } from '@/stores/ui'
 
 const app = createApp(App)
@@ -29,7 +30,10 @@ try {
   const imagesLoaded = preloadImages([], percent => loader.setRealProgress(percent))
 
   // Грузим всё, что нужно перед маунтом
-  await Promise.all([imagesLoaded])
+  await Promise.all([
+    imagesLoaded,
+    waitSoundsLoaded()
+  ])
   await loader.finish() // Добиваем прогресс до 100%
 
   // Запускаем приложение

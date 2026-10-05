@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory, type RouteLocationNormalized } from 'vue-router'
 import StartView from '../views/StartView.vue'
+import _AudioView from '../views/_AudioView.vue'
 import { useModalStore } from '@/stores/modal'
 
 const router = createRouter({
@@ -9,6 +10,11 @@ const router = createRouter({
       path: '/',
       name: 'start',
       component: StartView,
+    },
+    {
+      path: '/_audio',
+      name: '_audio',
+      component: _AudioView,
     },
     {
       path: '/:pathMatch(.*)*',
